@@ -2,7 +2,8 @@
 
 #include "List.hpp"
 
-class DoubleLinkedLisst : public List
+template <typename T>
+class DoubleLinkedLisst : public List<T>
 {
 
 };

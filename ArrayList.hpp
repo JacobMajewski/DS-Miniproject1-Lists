@@ -2,7 +2,8 @@
 
 #include "List.hpp"
 
-class ArrayList : public List
+template <typename T>
+class ArrayList : public List<T>
 {
 
 };

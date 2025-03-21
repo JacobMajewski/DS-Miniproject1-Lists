@@ -2,7 +2,8 @@
 
 #include "List.hpp"
 
-class SingleLinkedList : public List
+template <typename T>
+class SingleLinkedList : public List<T>
 {
 
 };
