@@ -27,7 +27,7 @@
     <ClCompile Include="SingleLinkedList.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="DoubleLinkedLisst.cpp">
+    <ClCompile Include="DoubleLinkedList.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,7 +41,7 @@
     <ClInclude Include="SingleLinkedList.hpp">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="DoubleLinkedLisst.hpp">
+    <ClInclude Include="DoubleLinkedList.hpp">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
   </ItemGroup>

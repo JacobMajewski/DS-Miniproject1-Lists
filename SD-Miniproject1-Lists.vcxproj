@@ -128,14 +128,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ArrayList.cpp" />
-    <ClCompile Include="DoubleLinkedLisst.cpp" />
+    <ClCompile Include="DoubleLinkedList.cpp" />
     <ClCompile Include="List.cpp" />
     <ClCompile Include="SD-Miniproject1-Lists.cpp" />
     <ClCompile Include="SingleLinkedList.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrayList.hpp" />
-    <ClInclude Include="DoubleLinkedLisst.hpp" />
+    <ClInclude Include="DoubleLinkedList.hpp" />
     <ClInclude Include="List.hpp" />
     <ClInclude Include="SingleLinkedList.hpp" />
   </ItemGroup>
