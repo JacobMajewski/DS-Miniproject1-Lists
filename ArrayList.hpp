@@ -5,6 +5,9 @@
 template <typename T>
 class ArrayList : public List<T>
 {
+private:
+
+public:
 
 };
 
