@@ -6,7 +6,7 @@ template <typename T>
 class ArrayList : public List<T>
 {
 private:
-	*T content;
+	T* content;
 	size_t _capacity;
 	size_t _start;
 	size_t last();

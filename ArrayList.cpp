@@ -1,5 +1,5 @@
 #include "ArrayList.hpp"
-
+#include "List.hpp"
 template <typename T>
 ArrayList<T>::ArrayList<T>() : _capacity(4), _start(1), List<T>() { content = new T[4]; }
 template<typename T>
@@ -45,5 +45,5 @@ template <typename T>
  template <typename T>
  void  ArrayList<T>::addBack(T elem)
  {
-	 last()
+	 last();
  }
