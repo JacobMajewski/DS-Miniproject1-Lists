@@ -1,3 +1,3 @@
 #include "List.hpp"
 template <typename T>
-List<T>::List<T>() : _size(0) {}
+List<T>::List() : _size(0) {}

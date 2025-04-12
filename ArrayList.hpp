@@ -5,13 +5,16 @@
 template <typename T>
 class ArrayList : public List<T>
 {
-private:
+protected:
 	T* content;
 	size_t _capacity;
 	size_t _start;
 	size_t last();
+	void resize();
+
 public:
-	ArrayList<T>() : _capacity(4), _start(1), List<T>() {}
+	ArrayList();
+	~ArrayList();
 	size_t size() override;
 	bool isEmpty() override;
 	T atIndex(size_t index) override;
@@ -19,5 +22,8 @@ public:
 	void add(T elem, size_t index) override;
 	void addFront(T elem) override;
 	void addBack(T elem) override;
+	T popBack();
+	T popFront();
+	T pop();
 };
 
