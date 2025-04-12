@@ -1,6 +1,6 @@
 #include "ArrayList.hpp"
 #include "List.hpp"
-
+#include <stdexcept>
 //instead of _size there is this->_size, why? if both classes are templates, compiler doest not see member variable
 
 template <typename T>
@@ -10,7 +10,7 @@ ArrayList<T>::~ArrayList() { delete[] content; }
 template<typename T>
 size_t ArrayList<T>::last() //helper to calc last index
 {
-	return this->_size + _start;
+	return this->_size + _start - 1;
 }
 template <typename T>
 size_t ArrayList<T>::size() 
@@ -27,22 +27,28 @@ template <typename T>
  {
 	 if (index >= _start && index < _capacity - 1)
 		 return content[index];
+	 throw std::out_of_range("Invalid index");
  }
  template <typename T>
  size_t ArrayList<T>::search(T elem)
  {
-	 for(size_t idx = _start; idx < this->_size; idx++)
+	 for(size_t idx = _start; idx <= last(); idx++)
 		if(content[idx] == elem) return idx;
 	 return -1;
  }
  template <typename T>
- void ArrayList<T>::add(T elem, size_t index)
+ void ArrayList<T>::add(T elem, size_t index) // ah, mate negative indexes
  {
-	 if (index >= 0 && index < _capacity-1)
-	 {
-		 for (size_t idx = this->_size; idx>index; idx++)
-			 content[index] = content[index-1];
-	 }
+	 if (index > this->_size)
+		 throw std::out_of_range("Invalid index");
+	 if (last() + 1 == _capacity) resize();
+	 size_t realIndex = this->_start + index; // offset
+
+	 for (size_t idx = last(); idx >= realIndex; --idx)
+		 content[idx + 1] = content[idx];
+
+	 content[realIndex] = elem;
+	 this->_size++;
  }
  template <typename T>
  void ArrayList<T>::addFront(T elem)
@@ -56,7 +62,9 @@ template <typename T>
  void  ArrayList<T>::addBack(T elem)
  {
 
-	 if (last() == _capacity - 1) resize();
+	 if (last()+1 == _capacity) resize();
+	 content[last()+1] = elem;
+	 this->_size++;
 
  }
  template<typename T>
@@ -80,8 +88,8 @@ template <typename T>
 	 size_t newStart = _capacity; // n "negative indexes"
 	 _capacity *= 3;			 // also n back indexes
 	 T* newContent = new T[_capacity];
-		 for (size_t idx = _start, i = newStart; idx < last(); idx++)
-			 newContent[idx + newStart] = content[idx];
+		 for (size_t i = 0; i < this->_size; i++)
+			 newContent[newStart + i] = content[_start + i];
 		 delete[] content;
 		 content = newContent;
 		 _start = newStart;
