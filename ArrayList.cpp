@@ -71,6 +71,7 @@ template <typename T>
 	 if (isEmpty()) throw std::length_error("List is empty");
 	 T removed = content[last()];
 	 this->_size--;
+	 shrink();
 	 return removed; // decided not to resize on removing
  }
  template<typename T>
@@ -80,6 +81,7 @@ template <typename T>
 	 T removed = content[_start];
 	 _start++;
 	 this->_size--;
+	 shrink();
 	 return removed;
  }
  template<typename T>
@@ -97,6 +99,7 @@ template <typename T>
 		 }
 
 		 this->_size--;
+		 shrink();
 		 return removed;
 	 }
  }
