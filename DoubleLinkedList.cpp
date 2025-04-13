@@ -140,7 +140,24 @@ T DoubleLinkedList<T>::popBack() {
 
 template <typename T>
 T DoubleLinkedList<T>::pop(size_t index) {
-    return popBack();
+    if (index >= this->_size || isEmpty()) return T();
+
+    if (index == 0) return popFront();
+    if (index == this->_size - 1) return popBack();
+
+    Node* node_delete = getNode(index);
+    T value = node_delete->data;
+
+    Node* prevN = node_delete->prev;
+    Node* nextN = node_delete->next;
+
+    if (prevN) prevN->next = nextN;
+    if (nextN) nextN->prev = prevN;
+
+    delete nodeToDelete;
+    this->_size--;
+
+    return value;
 }
 
 
