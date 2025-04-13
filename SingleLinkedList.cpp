@@ -129,7 +129,24 @@ T SingleLinkedList<T>::popFront() {
     return val;
 }
 
-template <typename T>
 T SingleLinkedList<T>::pop(size_t index) {
-    return popBack();  
+    if (index >= this->_size || isEmpty()) return T();
+
+    if (index == 0) return popFront();
+
+    Node* prev = head;
+    for (size_t i = 0; i < index - 1; ++i) {
+        prev = prev->next;
+    }
+
+    Node* node_delete = prev->next;
+    T value = node_delete->data;
+
+    prev->next = node_delete->next;
+    if (node_delete == tail) tail = prev;
+
+    delete node_delete;
+    this->_size--;
+
+    return value;
 }
