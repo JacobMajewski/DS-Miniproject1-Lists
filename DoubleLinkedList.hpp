@@ -22,7 +22,7 @@ public:
 
     size_t size() override;
     bool isEmpty() override;
-    size_t search(T elem) override;
+    int search(T elem) override;
     T atIndex(size_t index) override;
 
     void add(T elem, size_t index) override;
@@ -31,7 +31,7 @@ public:
 
     T popBack() override;
     T popFront() override;
-    T pop() override;
+    T pop(size_t index) override;
 
 private:
     Node* getNode(size_t index);

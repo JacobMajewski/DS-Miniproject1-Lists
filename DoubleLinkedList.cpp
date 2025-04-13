@@ -52,7 +52,7 @@ typename DoubleLinkedList<T>::Node* DoubleLinkedList<T>::getNode(size_t index) {
 }
 
 template <typename T>
-size_t DoubleLinkedList<T>::search(T elem) {
+int DoubleLinkedList<T>::search(T elem) {
     Node* current = head;
     size_t index = 0;
     while (current) { if (current->data == elem)
@@ -139,7 +139,7 @@ T DoubleLinkedList<T>::popBack() {
 }
 
 template <typename T>
-T DoubleLinkedList<T>::pop() {
+T DoubleLinkedList<T>::pop(size_t index) {
     return popBack();
 }
 

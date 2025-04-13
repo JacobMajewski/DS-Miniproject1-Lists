@@ -11,6 +11,7 @@ protected:
 	size_t _start;
 	size_t last();
 	void resize();
+	void shrink();
 
 public:
 	ArrayList();

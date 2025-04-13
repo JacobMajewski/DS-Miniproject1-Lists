@@ -44,7 +44,7 @@ typename SingleLinkedList<T>::Node* SingleLinkedList<T>::getNode(size_t index) {
 }
 
 template <typename T>
-size_t SingleLinkedList<T>::search(T elem) {
+int SingleLinkedList<T>::search(T elem) {
     Node* current_node = head;
     size_t index = 0;
     while (current_node) {
@@ -130,6 +130,6 @@ T SingleLinkedList<T>::popFront() {
 }
 
 template <typename T>
-T SingleLinkedList<T>::pop() {
+T SingleLinkedList<T>::pop(size_t index) {
     return popBack();  
 }
