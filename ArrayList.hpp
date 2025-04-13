@@ -18,12 +18,12 @@ public:
 	size_t size() override;
 	bool isEmpty() override;
 	T atIndex(size_t index) override;
-	size_t search(T elem) override;
+	int search(T elem) override;
 	void add(T elem, size_t index) override;
 	void addFront(T elem) override;
 	void addBack(T elem) override;
 	T popBack();
 	T popFront();
-	T pop();
+	T pop(size_t index);
 };
 
