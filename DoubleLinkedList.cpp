@@ -1,5 +1,6 @@
 #include "DoubleLinkedList.hpp"
 #include "List.hpp"
+#include <stdexcept>
 
 template <typename T>
 DoubleLinkedList<T>::DoubleLinkedList() : head(nullptr), tail(nullptr) {
@@ -55,7 +56,8 @@ template <typename T>
 int DoubleLinkedList<T>::search(T elem) {
     Node* current = head;
     size_t index = 0;
-    while (current) { if (current->data == elem)
+    while (current) {
+        if (current->data == elem)
             return index;
         current = current->next;
         ++index;
@@ -65,6 +67,9 @@ int DoubleLinkedList<T>::search(T elem) {
 
 template <typename T>
 T DoubleLinkedList<T>::atIndex(size_t index) {
+    if (index >= this->_size)
+        throw std::out_of_range("Invalid index");
+
     Node* node = getNode(index);
     return node ? node->data : T();
 }
@@ -75,7 +80,6 @@ void DoubleLinkedList<T>::addFront(T elem) {
     if (head) head->prev = newNode;
     head = newNode;
     if (!tail) tail = head;
-
     this->_size++;
 }
 
@@ -90,13 +94,13 @@ void DoubleLinkedList<T>::addBack(T elem) {
 
 template <typename T>
 void DoubleLinkedList<T>::add(T elem, size_t index) {
-    if (index > this->_size) return;
+    if (index > this->_size)
+        throw std::out_of_range("Invalid index");
 
     if (index == 0) addFront(elem);
     else if (index == this->_size) addBack(elem);
     else {
         Node* nextN = getNode(index);
-        if (!nextN) return;
         Node* prevN = nextN->prev;
         Node* newN = new Node(elem, prevN, nextN);
         if (prevN)
@@ -129,9 +133,10 @@ T DoubleLinkedList<T>::popBack() {
     Node* node = tail;
     T val = node->data;
     tail = tail->prev;
-    if (tail) tail->next = nullptr;
-    else head = nullptr;
-
+    if (tail)
+        tail->next = nullptr;
+    else
+        head = nullptr;
 
     delete node;
     this->_size--;
@@ -154,10 +159,8 @@ T DoubleLinkedList<T>::pop(size_t index) {
     if (prevN) prevN->next = nextN;
     if (nextN) nextN->prev = prevN;
 
-    delete nodeToDelete;
+    delete node_delete;
     this->_size--;
 
     return value;
 }
-
-

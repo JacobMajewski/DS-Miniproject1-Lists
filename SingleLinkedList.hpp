@@ -12,7 +12,7 @@ private:
     };
 
     Node* head;
-
+    Node* tail;
 public:
     SingleLinkedList();
     ~SingleLinkedList();

@@ -3,7 +3,10 @@
 //instead of _size there is this->_size, why? if both classes are templates, compiler doest not see member variable
 
 template <typename T>
-ArrayList<T>::ArrayList() : _capacity(4), _start(1), List() { content = new T[4]; }
+ArrayList<T>::ArrayList() : List<T>(), _capacity(4), _start(1) {
+	this->_size = 0;
+	content = new T[4];
+}
 template <typename T>
 ArrayList<T>::~ArrayList() { delete[] content; }
 template<typename T>
@@ -115,3 +118,4 @@ template <typename T>
 		 content = newContent;
 		 _start = newStart;
  }
+ template class ArrayList<int>;
