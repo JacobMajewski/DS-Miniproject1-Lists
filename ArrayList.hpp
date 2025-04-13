@@ -26,5 +26,12 @@ public:
 	T popBack();
 	T popFront();
 	T pop(size_t index);
+	void clear();
 };
-
+template <typename T>
+ArrayList<T>::ArrayList() : List<T>(), _capacity(4), _start(1) {
+	this->_size = 0;
+	content = new T[4];
+}
+template <typename T>
+ArrayList<T>::~ArrayList() { delete[] content; }

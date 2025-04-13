@@ -2,15 +2,7 @@
 #include "List.hpp"
 #include <stdexcept>
 
-template <typename T>
-SingleLinkedList<T>::SingleLinkedList() : head(nullptr) {
-    this->_size = 0;
-}
 
-template <typename T>
-SingleLinkedList<T>::~SingleLinkedList() {
-    clear();
-}
 
 template <typename T>
 void SingleLinkedList<T>::clear() {
@@ -158,3 +150,4 @@ T SingleLinkedList<T>::pop(size_t index) {
 
     return value;
 }
+template class SingleLinkedList<int>;

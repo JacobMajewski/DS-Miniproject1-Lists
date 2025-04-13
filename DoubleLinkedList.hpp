@@ -37,3 +37,12 @@ private:
     Node* getNode(size_t index);
     void clear();
 };
+template <typename T>
+DoubleLinkedList<T>::DoubleLinkedList() : head(nullptr), tail(nullptr) {
+    this->_size = 0;
+}
+
+template <typename T>
+DoubleLinkedList<T>::~DoubleLinkedList() {
+    clear();
+}

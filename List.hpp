@@ -10,7 +10,9 @@ protected:
 	size_t _size;
 
 public:
-	List();
+	List() : _size(0) {}           
+	virtual ~List() = default;     
+
 	virtual size_t size() = 0;
 	virtual bool  isEmpty() = 0;
 	virtual T atIndex(size_t index) = 0;
@@ -21,7 +23,7 @@ public:
 	virtual T popBack() = 0;
 	virtual T popFront() = 0;
 	virtual T pop(size_t index) = 0;
-	~List<T>() = default;
+	
 
 };
 

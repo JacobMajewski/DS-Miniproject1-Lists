@@ -2,13 +2,7 @@
 #include <stdexcept>
 //instead of _size there is this->_size, why? if both classes are templates, compiler doest not see member variable
 
-template <typename T>
-ArrayList<T>::ArrayList() : List<T>(), _capacity(4), _start(1) {
-	this->_size = 0;
-	content = new T[4];
-}
-template <typename T>
-ArrayList<T>::~ArrayList() { delete[] content; }
+
 template<typename T>
 size_t ArrayList<T>::last() //helper to calc last index
 {
@@ -45,8 +39,8 @@ template <typename T>
 	 if (last() + 1 == _capacity) resize();
 	 size_t realIndex = this->_start + index; // offset
 
-	 for (size_t idx = last(); idx >= realIndex; --idx)
-		 content[idx + 1] = content[idx];
+	 for (size_t idx = last() + 1; idx > realIndex; --idx)
+		 content[idx] = content[idx - 1];
 
 	 content[realIndex] = elem;
 	 this->_size++;
@@ -60,13 +54,12 @@ template <typename T>
 	 content[_start] = elem;
  }
  template <typename T>
- void  ArrayList<T>::addBack(T elem)
+ void ArrayList<T>::addBack(T elem)
  {
-
-	 if (last()+1 == _capacity) resize();
+	 size_t insertIndex = last() + 1;
+	 if (insertIndex >= _capacity) resize();
+	 content[insertIndex] = elem;
 	 this->_size++;
-	 content[last()] = elem;
-
  }
  template<typename T>
  T ArrayList<T>::popBack()
@@ -118,4 +111,33 @@ template <typename T>
 		 content = newContent;
 		 _start = newStart;
  }
+ template <typename T>
+ void ArrayList<T>::shrink() {
+	 if (this->_size < _capacity / 4 && _capacity > 4) { // zmniejsz tylko jeœli du¿o wolnego miejsca
+		 size_t newCapacity = _capacity / 2;
+		 size_t newStart = newCapacity / 3;
+		 T* newContent = new T[newCapacity];
+
+		 for (size_t i = 0; i < this->_size; ++i) {
+			 newContent[newStart + i] = content[_start + i];
+		 }
+
+		 delete[] content;
+		 content = newContent;
+		 _capacity = newCapacity;
+		 _start = newStart;
+	 }
+ }
+
+ template <typename T>
+ void ArrayList<T>::clear() {
+	 size_t startSize = 4;
+	 delete[] content;
+	 _capacity =startSize;
+	 _start = _capacity / 3;
+	 content = new T[_capacity];
+	 this->_size = 0;
+	 
+ }
+
  template class ArrayList<int>;

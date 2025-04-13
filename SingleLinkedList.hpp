@@ -34,3 +34,12 @@ private:
     Node* getNode(size_t index);
     void clear();
 };
+template <typename T>
+SingleLinkedList<T>::SingleLinkedList() : head(nullptr), tail(nullptr) {
+    this->_size = 0;
+}
+
+template <typename T>
+SingleLinkedList<T>::~SingleLinkedList() {
+    clear();
+}
