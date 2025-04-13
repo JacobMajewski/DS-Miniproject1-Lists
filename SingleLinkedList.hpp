@@ -1,31 +1,36 @@
 #pragma once
-
 #include "List.hpp"
 
 template <typename T>
-class SingleLinkedList : public List<T> {
+class SingleLinkedList : public List<T>
+{
 private:
-	struct Node
-	{
-		T dane;
-		Node* next;
+    struct Node {
+        T data;
+        Node* next;
+        Node(T val, Node* nxt = nullptr) : data(val), next(nxt) {}
+    };
 
-		Node(const T& node_data);
-	};
-
-	Node* head;
-	Node* tail;
-	size_t size_t;
+    Node* head;
 
 public:
-	SingleLinkedList();
+    SingleLinkedList();
+    ~SingleLinkedList();
 
-	~SingleLinkedList();
+    size_t size() override;
+    bool isEmpty() override;
+    size_t search(T elem) override;
+    T atIndex(size_t index) override;
 
-	void push_end(const T& value);
+    void add(T elem, size_t index) override;
+    void addFront(T elem) override;
+    void addBack(T elem) override;
 
-	void push_front(const T& value);
+    T popBack() override;
+    T popFront() override;
+    T pop() override;
 
-	bool pop_front();
+private:
+    Node* getNode(size_t index);
+    void clear();
 };
-
