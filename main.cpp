@@ -111,6 +111,31 @@ void benchmarkPopBack(int* baseData, int size, std::ofstream& out) {
     }
 }
 
+// ------- Benchmark: popFront -------
+template <typename ListType>
+void benchmarkPopFront(int* baseData, int size, std::ofstream& out) {
+    ListType* lists[10];
+    for (int i = 0; i < 10; ++i) {
+        lists[i] = new ListType();
+        prepareList(lists[i], baseData, size);
+    }
+
+    auto start = std::chrono::high_resolution_clock::now();
+    for (int i = 0; i < 10; ++i)
+        lists[i]->popFront();  // Usuwanie pierwszego elementy
+    auto end = std::chrono::high_resolution_clock::now();
+
+    long long duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+    out << size << "," << duration << "\n";
+
+    // Resetowanie po badaniu
+    for (int i = 0; i < 10; ++i) {
+        lists[i]->addBack(baseData[size - 1]);  // Dodanie losowego elementu z powrotem
+        resetList(lists[i], baseData, size - 1);  // Przypisanie pierwotnej wersji
+        delete lists[i];
+    }
+}
+
 // ------- Benchmark: addFront -------
 template <typename ListType>
 void benchmarkAddFront(int* baseData, int size, int value, std::ofstream& out) {
@@ -159,6 +184,30 @@ void benchmarkAddAtIndex(int* baseData, int size, int value, int index, std::ofs
     }
 }
 
+// ------- Benchmark: pop(index) -------
+template <typename ListType>
+void benchmarkPopAtIndex(int* baseData, int size, int index, std::ofstream& out) {
+    ListType* lists[10];
+    for (int i = 0; i < 10; ++i) {
+        lists[i] = new ListType();
+        prepareList(lists[i], baseData, size);
+    }
+
+    auto start = std::chrono::high_resolution_clock::now();
+    for (int i = 0; i < 10; ++i)
+        lists[i]->pop(index);
+    auto end = std::chrono::high_resolution_clock::now();
+
+    long long duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+    out << size << "," << duration << "\n";
+
+    // Resetowanie po badaniu
+    for (int i = 0; i < 10; ++i) {
+        resetList(lists[i], baseData, size);
+        delete lists[i];
+    }
+}
+
 // ------- Benchmark: Search -------
 template <typename ListType>
 void benchmarkSearch(int* baseData, int size, int value, int index, std::ofstream& out) {
@@ -187,7 +236,7 @@ void benchmarkSearch(int* baseData, int size, int value, int index, std::ofstrea
 
 // Funkcja do przeprowadzenia benchmarków
 int main() {
-    OutputFile files[4][3]; // Tablica przechowująca pliki
+    OutputFile files[7][3]; // Tablica przechowująca pliki
     openFiles(files); // Otwieranie plików przed rozpoczęciem benchmarków
 
     std::mt19937 gen(777);
@@ -351,6 +400,16 @@ while (true) {
         benchmarkSearch<ArrayList<int>>(baseData, size, newValue, randIndex, files[4][0].file);
         benchmarkSearch<SingleLinkedList<int>>(baseData, size, newValue, randIndex, files[4][1].file);
         benchmarkSearch<DoubleLinkedList<int>>(baseData, size, newValue, randIndex, files[4][2].file);
+
+        // --- pop(index) ---
+        benchmarkPopAtIndex<ArrayList<int>>(baseData, size, randIndex, files[5][0].file);
+        benchmarkPopAtIndex<SingleLinkedList<int>>(baseData, size, randIndex, files[5][1].file);
+        benchmarkPopAtIndex<DoubleLinkedList<int>>(baseData, size, randIndex, files[5][2].file);
+
+        // --- popFront ---
+        benchmarkPopFront<ArrayList<int>>(baseData, size, files[6][0].file);
+        benchmarkPopFront<SingleLinkedList<int>>(baseData, size, files[6][1].file);
+        benchmarkPopFront<DoubleLinkedList<int>>(baseData, size, files[6][2].file);
 
         delete[] baseData; // Zwolnienie pamięci
         std::cout << "Zakończono pomiary dla rozmiaru: " << size << "\n";
