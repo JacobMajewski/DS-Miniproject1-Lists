@@ -30,9 +30,9 @@ public:
     T popFront() override;
     T pop(size_t index) override;
 
+    void clear();
 private:
     Node* getNode(size_t index);
-    void clear();
 };
 template <typename T>
 SingleLinkedList<T>::SingleLinkedList() : head(nullptr), tail(nullptr) {
