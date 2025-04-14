@@ -6,6 +6,7 @@
 #include <random>
 #include <fstream>
 #include <string>
+#include <stdlib.h>
 
 // Struktura przechowująca pliki do zapisu
 struct OutputFile {
@@ -192,6 +193,132 @@ int main() {
     std::mt19937 gen(777);
     std::uniform_int_distribution<int> dist(0, 1'000'000);
     const int Sizes[]{ 5000, 10000, 25000, 50000, 100000, 250000, 500000, 1000000 };
+
+    //menu wyboru
+int wyborGlowny = 0;
+while (true) {
+    std::cout << "\n==== STRUKTURY DANYCH ====\n";
+    std::cout << "1. Opcja jeden\n";
+    std::cout << "2. Opcja dwa\n";
+    std::cout << "3. Opcja trzy\n";
+    std::cout << "4. Wyjscie\n";
+    std::cout << "Wybierz opcje: ";
+    std::cin >> wyborGlowny;
+    system("CLS");
+
+    if (wyborGlowny == 4) {
+        break;
+    }
+
+    if (wyborGlowny == 1) {
+        int wybor1 = 0;
+        while (true) {
+            // Menu opcji jeden
+            std::cout << "\n-- MENU OPCJI JEDEN --\n";
+            std::cout << "1. Podopcja 1\n";
+            std::cout << "2. Podopcja 2\n";
+            std::cout << "3. Podopcja 3\n";
+            std::cout << "4. Podopcja 4\n";
+            std::cout << "5. Podopcja 5\n";
+            std::cout << "6. Powrot do menu glownego\n";
+            std::cout << "Wybierz podopcje: ";
+            std::cin >> wybor1;
+            system("CLS");
+
+            if (wybor1 == 6) {
+                break;
+            }
+
+            if (wybor1 == 1) {
+                std::cout << "Wykonuje sie kod dla opcji 1 w menu jeden\n";
+            }
+            else if (wybor1 == 2) {
+                std::cout << "Wykonuje sie kod dla opcji 2 w menu jeden\n";
+            }
+            else if (wybor1 == 3) {
+                std::cout << "Wykonuje sie kod dla opcji 3 w menu jeden\n";
+            }
+            else if (wybor1 == 4) {
+                std::cout << "Wykonuje sie kod dla opcji 4 w menu jeden\n";
+            }
+            else if (wybor1 == 5) {
+                std::cout << "Wykonuje sie kod dla opcji 5 w menu jeden\n";
+            }
+        }
+    }
+    else if (wyborGlowny == 2) {
+        int wybor2 = 0;
+        while (true) {
+            // Menu opcji dwa
+            std::cout << "\n-- MENU OPCJI DWA --\n";
+            std::cout << "1. Podopcja 1\n";
+            std::cout << "2. Podopcja 2\n";
+            std::cout << "3. Podopcja 3\n";
+            std::cout << "4. Podopcja 4\n";
+            std::cout << "5. Podopcja 5\n";
+            std::cout << "6. Powrot do menu glownego\n";
+            std::cout << "Wybierz podopcje: ";
+            std::cin >> wybor2;
+            system("CLS");
+
+            if (wybor2 == 6) {
+                break;
+            }
+
+            if (wybor2 == 1) {
+                std::cout << "Wykonuje sie kod dla opcji 1 w menu dwa\n";
+            }
+            else if (wybor2 == 2) {
+                std::cout << "Wykonuje sie kod dla opcji 2 w menu dwa\n";
+            }
+            else if (wybor2 == 3) {
+                std::cout << "Wykonuje sie kod dla opcji 3 w menu dwa\n";
+            }
+            else if (wybor2 == 4) {
+                std::cout << "Wykonuje sie kod dla opcji 4 w menu dwa\n";
+            }
+            else if (wybor2 == 5) {
+                std::cout << "Wykonuje sie kod dla opcji 5 w menu dwa\n";
+            }
+        }
+    }
+    else if (wyborGlowny == 3) {
+        int wybor3 = 0;
+        while (true) {
+            // Menu opcji dwa
+            std::cout << "\n-- MENU OPCJI DWA --\n";
+            std::cout << "1. Podopcja 1\n";
+            std::cout << "2. Podopcja 2\n";
+            std::cout << "3. Podopcja 3\n";
+            std::cout << "4. Podopcja 4\n";
+            std::cout << "5. Podopcja 5\n";
+            std::cout << "6. Powrot do menu glownego\n";
+            std::cout << "Wybierz podopcje: ";
+            std::cin >> wybor3;
+            system("CLS");
+
+            if (wybor3 == 6) {
+                break;
+            }
+
+            if (wybor3 == 1) {
+                std::cout << "Wykonuje sie kod dla opcji 1 w menu dwa\n";
+            }
+            else if (wybor3 == 2) {
+                std::cout << "Wykonuje sie kod dla opcji 2 w menu dwa\n";
+            }
+            else if (wybor3 == 3) {
+                std::cout << "Wykonuje sie kod dla opcji 3 w menu dwa\n";
+            }
+            else if (wybor3 == 4) {
+                std::cout << "Wykonuje sie kod dla opcji 4 w menu dwa\n";
+            }
+            else if (wybor3 == 5) {
+                std::cout << "Wykonuje sie kod dla opcji 5 w menu dwa\n";
+            }
+        }
+    }
+}
 
     for (int size : Sizes) {
         int* baseData = generateRandomArray(size, gen, dist);
