@@ -100,10 +100,9 @@ template <typename T>
 	 }
  }
  template <typename T>
- void  ArrayList<T>::resize()
- {								   // therefore i made that even if mass emplacement on either side happens, both end are at least in amortized analysis O(1) time complexity and memory usage is also O(n). Perchance
-	 _capacity *= 2;			 // also n back indexes
-	 size_t newStart = _capacity/4; // n "negative indexes"
+ void  ArrayList<T>::resize(){
+	_capacity *= 2;			     
+	 size_t newStart = _capacity/4; // n/2 free before content, n/2 after content
 	 T* newContent = new T[_capacity];
 		 for (size_t i = 0; i < this->_size; i++)
 			 newContent[newStart + i] = content[_start + i];
