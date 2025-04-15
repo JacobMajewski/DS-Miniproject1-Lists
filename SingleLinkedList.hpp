@@ -30,7 +30,7 @@ public:
     T popBack() override;
     T popFront() override;
     T pop(size_t index) override;
-
+    void print() override;
     void clear();
 private:
     Node* getNode(size_t index);

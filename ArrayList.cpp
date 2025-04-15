@@ -1,5 +1,6 @@
 #include "ArrayList.hpp"
 #include <stdexcept>
+#include <iostream>
 //instead of _size there is this->_size, why? if both classes are templates, compiler doest not see member variable
 
 
@@ -98,6 +99,13 @@ template <typename T>
 		 shrink();
 		 return removed;
 	 }
+ }
+ template<typename T>
+ void ArrayList<T>::print()
+ {
+	 for (size_t i = _start; i <= last(); i++)
+		 std::cout << content[i] << " ";
+	 std::cout << std::endl;
  }
  template <typename T>
  void  ArrayList<T>::resize(){

@@ -2,6 +2,7 @@
 #include "List.hpp"
 #include <stdexcept>
 
+#include <iostream>
 
 
 template <typename T>
@@ -149,5 +150,15 @@ T SingleLinkedList<T>::pop(size_t index) {
     this->_size--;
 
     return value;
+}
+template<typename T>
+void SingleLinkedList<T>::print()
+{
+    Node *curr = head;
+    while (curr != nullptr) {
+        std::cout << curr->data << " ";
+        curr = curr->next;
+    }
+    std::cout << std::endl;
 }
 template class SingleLinkedList<int>;

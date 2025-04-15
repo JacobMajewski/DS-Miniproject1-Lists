@@ -2,7 +2,7 @@
 #include "List.hpp"
 #include <stdexcept>
 
-
+#include <iostream>
 
 template <typename T>
 void DoubleLinkedList<T>::clear() {
@@ -155,5 +155,15 @@ T DoubleLinkedList<T>::pop(size_t index) {
     this->_size--;
 
     return value;
+}
+template<typename T>
+void DoubleLinkedList<T>::print()
+{
+    Node *curr = head;
+    while (curr != nullptr) {
+        std::cout << curr->data << " ";
+        curr = curr->next;
+    }
+    std::cout << std::endl;
 }
 template class DoubleLinkedList<int>;

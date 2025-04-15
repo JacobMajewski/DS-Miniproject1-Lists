@@ -27,6 +27,8 @@ public:
 	T popBack();
 	T popFront();
 	T pop(size_t index);
+	void print() override;
+
 	void clear();
 };
 template <typename T>

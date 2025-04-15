@@ -23,7 +23,7 @@ public:
 	virtual T popBack() = 0;
 	virtual T popFront() = 0;
 	virtual T pop(size_t index) = 0;
-	
+	virtual void print()=0;
 
 };
 
