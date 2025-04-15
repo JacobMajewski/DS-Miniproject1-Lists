@@ -236,8 +236,7 @@ void benchmarkSearch(int* baseData, int size, int value, int index, std::ofstrea
 
 // Funkcja do przeprowadzenia benchmarków
 int main() {
-    OutputFile files[7][3]; // Tablica przechowująca pliki
-    openFiles(files); // Otwieranie plików przed rozpoczęciem benchmarków
+    
 
     std::mt19937 gen(777);
     std::uniform_int_distribution<int> dist(0, 1000000);
@@ -441,6 +440,9 @@ int main() {
             system("CLS");
         }
         else if (wyborGlowny == 4) {
+
+            OutputFile files[7][3]; // Tablica przechowująca pliki
+            openFiles(files); // Otwieranie plików przed rozpoczęciem benchmarków
             for (int size : Sizes) {
                 int* baseData = generateRandomArray(size, gen, dist);
                 int newValue = dist(gen);

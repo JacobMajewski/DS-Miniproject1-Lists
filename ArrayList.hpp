@@ -32,7 +32,7 @@ public:
 	void clear();
 };
 template <typename T>
-ArrayList<T>::ArrayList() : List<T>(), _capacity(4), _start(0) {
+ArrayList<T>::ArrayList() : List<T>(), _capacity(4), _start(1) {
 	this->_size = 0;
 	content = new T[4];
 }

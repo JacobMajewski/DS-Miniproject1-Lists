@@ -5,7 +5,7 @@
 
 
 template<typename T>
-size_t ArrayList<T>::last() //helper to calc last index
+size_t ArrayList<T>::last() //helper to calc last index with value
 {
 	return this->_size + _start - 1;
 }
@@ -57,14 +57,13 @@ template <typename T>
  template <typename T>
  void ArrayList<T>::addBack(T elem)
  {
-	size_t insertIndex;
-	insertIndex = last() + 1;
+	 if (_start + this->_size >= _capacity) {
+		 resize();
+	 }
 
-	if (insertIndex > _capacity) resize();
-
-	content[insertIndex] = elem;
-	this->_size++;
-	 
+	 size_t insertIndex = _start + this->_size;
+	 content[insertIndex] = elem;
+	 this->_size++;
  }
  template<typename T>
  T ArrayList<T>::popBack()
@@ -95,7 +94,7 @@ template <typename T>
 
 		 T removed = content[_start + index];
 
-		 for (size_t i = _start + index; i < last(); ++i) {
+		 for (size_t i = _start + index; i <= last(); ++i) {
 			 content[i] = content[i + 1];
 		 }
 
@@ -114,18 +113,20 @@ template <typename T>
  }
  template <typename T>
  void ArrayList<T>::resize() {
-	 print();
 	 size_t oldCapacity = _capacity;
+	 T* oldContent = content;
+
 	 _capacity *= 2;
-	 size_t newStart = _capacity/4;
-	 T* newContent = new T[_capacity];
-	 for (size_t i = 0; i < this->_size; i++) {
-		 newContent[newStart + i] = content[_start + i];
+	 content = new T[_capacity];
+
+	 size_t newStart = _capacity / 2 - this->_size / 2;
+
+	 for (size_t i = 0; i < this->_size; ++i) {
+		 content[newStart + i] = oldContent[_start + i];
 	 }
-	 delete[] content;
-	 content = newContent;
+
+	 delete[] oldContent;
 	 _start = newStart;
-	 print();
  }
  template <typename T>
  void ArrayList<T>::shrink() {
