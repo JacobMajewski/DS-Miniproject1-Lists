@@ -247,9 +247,9 @@ int main() {
 int wyborGlowny = 0;
 while (true) {
     std::cout << "\n==== STRUKTURY DANYCH ====\n";
-    std::cout << "1. Opcja jeden\n";
-    std::cout << "2. Opcja dwa\n";
-    std::cout << "3. Opcja trzy\n";
+    std::cout << "1. SinlgeLinkedList\n";
+    std::cout << "2. DoubleLinkedList\n";
+    std::cout << "3. ArrayList\n";
     std::cout << "4. Wyjscie\n";
     std::cout << "Wybierz opcje: ";
     std::cin >> wyborGlowny;
@@ -260,51 +260,68 @@ while (true) {
     }
 
     if (wyborGlowny == 1) {
+        SingleLinkedList<int> sll;
         int wybor1 = 0;
         while (true) {
             // Menu opcji jeden
-            std::cout << "\n-- MENU OPCJI JEDEN --\n";
-            std::cout << "1. Podopcja 1\n";
-            std::cout << "2. Podopcja 2\n";
-            std::cout << "3. Podopcja 3\n";
-            std::cout << "4. Podopcja 4\n";
-            std::cout << "5. Podopcja 5\n";
+            std::cout << "\n-- SINGLE LINKED LIST --\n";
+            std::cout << "1. Random \n";
+            std::cout << "2. Print All\n";
+            std::cout << "3. Pop \n";
+            std::cout << "4. Add \n";
+            std::cout << "5. Search \n";
             std::cout << "6. Powrot do menu glownego\n";
             std::cout << "Wybierz podopcje: ";
             std::cin >> wybor1;
-            system("CLS");
 
             if (wybor1 == 6) {
                 break;
             }
 
             if (wybor1 == 1) {
-                std::cout << "Wykonuje sie kod dla opcji 1 w menu jeden\n";
+                int rozmiar;
+                std::cin >> rozmiar;
+
+                std::mt19937 gen(std::random_device{}());
+                std::uniform_int_distribution<int> dist(0, 1000000);
+                int* dane = generateRandomArray(rozmiar, gen, dist);
+                prepareList(&sll, dane, rozmiar);
             }
             else if (wybor1 == 2) {
-                std::cout << "Wykonuje sie kod dla opcji 2 w menu jeden\n";
+                //lista.printAll(); placeholder
             }
             else if (wybor1 == 3) {
-                std::cout << "Wykonuje sie kod dla opcji 3 w menu jeden\n";
+                size_t index_delete;
+                std::cin >> index_delete;
+                sll.pop(index_delete);
             }
             else if (wybor1 == 4) {
-                std::cout << "Wykonuje sie kod dla opcji 4 w menu jeden\n";
+                size_t index_delete;
+                int new_element;
+                std::cin >> index_delete;
+                std::cin >> new_element;
+                sll.add(new_element, index_delete);
             }
             else if (wybor1 == 5) {
-                std::cout << "Wykonuje sie kod dla opcji 5 w menu jeden\n";
+                int user_input_value;
+                std::cin >> user_input_value;
+
+                size_t found_index = sll.search(user_input_value);
+                std::cout << found_index;
             }
         }
     }
     else if (wyborGlowny == 2) {
+        DoubleLinkedList<int> dll;
         int wybor2 = 0;
         while (true) {
             // Menu opcji dwa
-            std::cout << "\n-- MENU OPCJI DWA --\n";
-            std::cout << "1. Podopcja 1\n";
-            std::cout << "2. Podopcja 2\n";
-            std::cout << "3. Podopcja 3\n";
-            std::cout << "4. Podopcja 4\n";
-            std::cout << "5. Podopcja 5\n";
+            std::cout << "\n-- DOUBLE LINKED LIST --\n";
+            std::cout << "1. Random \n";
+            std::cout << "2. Print All\n";
+            std::cout << "3. Pop \n";
+            std::cout << "4. Add \n";
+            std::cout << "5. Search \n";
             std::cout << "6. Powrot do menu glownego\n";
             std::cout << "Wybierz podopcje: ";
             std::cin >> wybor2;
@@ -315,33 +332,51 @@ while (true) {
             }
 
             if (wybor2 == 1) {
-                std::cout << "Wykonuje sie kod dla opcji 1 w menu dwa\n";
+                int rozmiar;
+                std::cin >> rozmiar;
+
+                std::mt19937 gen(std::random_device{}());
+                std::uniform_int_distribution<int> dist(0, 1000000);
+                int* dane = generateRandomArray(rozmiar, gen, dist);
+                prepareList(&dll, dane, rozmiar);
             }
             else if (wybor2 == 2) {
-                std::cout << "Wykonuje sie kod dla opcji 2 w menu dwa\n";
+                //lista.printAll(); placeholder
             }
             else if (wybor2 == 3) {
-                std::cout << "Wykonuje sie kod dla opcji 3 w menu dwa\n";
+                size_t index_delete;
+                std::cin >> index_delete;
+                dll.pop(index_delete);
             }
             else if (wybor2 == 4) {
-                std::cout << "Wykonuje sie kod dla opcji 4 w menu dwa\n";
+                size_t index_delete;
+                int new_element;
+                std::cin >> index_delete;
+                std::cin >> new_element;
+                dll.add(new_element, index_delete);
             }
             else if (wybor2 == 5) {
-                std::cout << "Wykonuje sie kod dla opcji 5 w menu dwa\n";
+                int user_input_value;
+                std::cin >> user_input_value;
+
+                size_t found_index = dll.search(user_input_value);
+                std::cout << found_index;
             }
         }
     }
     else if (wyborGlowny == 3) {
+        ArrayList<int> arl;
         int wybor3 = 0;
         while (true) {
             // Menu opcji dwa
-            std::cout << "\n-- MENU OPCJI DWA --\n";
-            std::cout << "1. Podopcja 1\n";
-            std::cout << "2. Podopcja 2\n";
-            std::cout << "3. Podopcja 3\n";
-            std::cout << "4. Podopcja 4\n";
-            std::cout << "5. Podopcja 5\n";
+            std::cout << "\n-- ARRAY LIST --\n";
+            std::cout << "1. Random \n";
+            std::cout << "2. Print All\n";
+            std::cout << "3. Pop \n";
+            std::cout << "4. Add \n";
+            std::cout << "5. Search \n";
             std::cout << "6. Powrot do menu glownego\n";
+            std::cout << "Wybierz podopcje: ";
             std::cout << "Wybierz podopcje: ";
             std::cin >> wybor3;
             system("CLS");
@@ -351,19 +386,35 @@ while (true) {
             }
 
             if (wybor3 == 1) {
-                std::cout << "Wykonuje sie kod dla opcji 1 w menu dwa\n";
+                int rozmiar;
+                std::cin >> rozmiar;
+
+                std::mt19937 gen(std::random_device{}());
+                std::uniform_int_distribution<int> dist(0, 1000000);
+                int* dane = generateRandomArray(rozmiar, gen, dist);
+                prepareList(&arl, dane, rozmiar);
             }
             else if (wybor3 == 2) {
-                std::cout << "Wykonuje sie kod dla opcji 2 w menu dwa\n";
+                //lista.printAll(); placeholder
             }
             else if (wybor3 == 3) {
-                std::cout << "Wykonuje sie kod dla opcji 3 w menu dwa\n";
+                size_t index_delete;
+                std::cin >> index_delete;
+                arl.pop(index_delete);
             }
             else if (wybor3 == 4) {
-                std::cout << "Wykonuje sie kod dla opcji 4 w menu dwa\n";
+                size_t index_delete;
+                int new_element;
+                std::cin >> index_delete;
+                std::cin >> new_element;
+                arl.add(new_element, index_delete);
             }
             else if (wybor3 == 5) {
-                std::cout << "Wykonuje sie kod dla opcji 5 w menu dwa\n";
+                int user_input_value;
+                std::cin >> user_input_value;
+
+                size_t found_index = arl.search(user_input_value);
+                std::cout << found_index;
             }
         }
     }
