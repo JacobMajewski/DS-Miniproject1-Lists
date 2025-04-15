@@ -18,6 +18,7 @@ private:
 
 public:
     DoubleLinkedList();
+    DoubleLinkedList(size_t size);
     ~DoubleLinkedList();
 
     size_t size() override;
@@ -39,6 +40,11 @@ private:
 };
 template <typename T>
 DoubleLinkedList<T>::DoubleLinkedList() : head(nullptr), tail(nullptr) {
+    this->_size = 0;
+}
+
+template <typename T>
+DoubleLinkedList<T>::DoubleLinkedList(size_t size) : head(nullptr), tail(nullptr) {
     this->_size = 0;
 }
 
