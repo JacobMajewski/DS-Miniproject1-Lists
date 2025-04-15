@@ -15,6 +15,7 @@ private:
     Node* tail;
 public:
     SingleLinkedList();
+    SingleLinkedList(size_t size);
     ~SingleLinkedList();
 
     size_t size() override;
@@ -36,6 +37,11 @@ private:
 };
 template <typename T>
 SingleLinkedList<T>::SingleLinkedList() : head(nullptr), tail(nullptr) {
+    this->_size = 0;
+}
+
+template <typename T>
+SingleLinkedList<T>::SingleLinkedList(size_t size) : head(nullptr), tail(nullptr) {
     this->_size = 0;
 }
 
