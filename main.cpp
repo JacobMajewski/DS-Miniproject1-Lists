@@ -67,7 +67,7 @@ template <typename ListType>
 void benchmarkAddBack(int* baseData, int size, int value, std::ofstream& out) {
     ListType* lists[10];
     for (int i = 0; i < 10; ++i) {
-        lists[i] = new ListType();
+        lists[i] = new ListType(size);
         prepareList(lists[i], baseData, size);
     }
 
@@ -91,7 +91,7 @@ template <typename ListType>
 void benchmarkPopBack(int* baseData, int size, std::ofstream& out) {
     ListType* lists[10];
     for (int i = 0; i < 10; ++i) {
-        lists[i] = new ListType();
+        lists[i] = new ListType(size);
         prepareList(lists[i], baseData, size);
     }
 
@@ -116,7 +116,7 @@ template <typename ListType>
 void benchmarkPopFront(int* baseData, int size, std::ofstream& out) {
     ListType* lists[10];
     for (int i = 0; i < 10; ++i) {
-        lists[i] = new ListType();
+        lists[i] = new ListType(size);
         prepareList(lists[i], baseData, size);
     }
 
@@ -141,7 +141,7 @@ template <typename ListType>
 void benchmarkAddFront(int* baseData, int size, int value, std::ofstream& out) {
     ListType* lists[10];
     for (int i = 0; i < 10; ++i) {
-        lists[i] = new ListType();
+        lists[i] = new ListType(size);
         prepareList(lists[i], baseData, size);
     }
 
@@ -165,7 +165,7 @@ template <typename ListType>
 void benchmarkAddAtIndex(int* baseData, int size, int value, int index, std::ofstream& out) {
     ListType* lists[10];
     for (int i = 0; i < 10; ++i) {
-        lists[i] = new ListType();
+        lists[i] = new ListType(size);
         prepareList(lists[i], baseData, size);
     }
 
@@ -189,7 +189,7 @@ template <typename ListType>
 void benchmarkPopAtIndex(int* baseData, int size, int index, std::ofstream& out) {
     ListType* lists[10];
     for (int i = 0; i < 10; ++i) {
-        lists[i] = new ListType();
+        lists[i] = new ListType(size);
         prepareList(lists[i], baseData, size);
     }
 

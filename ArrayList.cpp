@@ -57,10 +57,14 @@ template <typename T>
  template <typename T>
  void ArrayList<T>::addBack(T elem)
  {
-	 size_t insertIndex = last() + 1;
-	 if (insertIndex >= _capacity) resize();
-	 content[insertIndex] = elem;
-	 this->_size++;
+	size_t insertIndex;
+	insertIndex = last() + 1;
+
+	if (insertIndex > _capacity) resize();
+
+	content[insertIndex] = elem;
+	this->_size++;
+	 
  }
  template<typename T>
  T ArrayList<T>::popBack()
@@ -69,7 +73,7 @@ template <typename T>
 	 T removed = content[last()];
 	 this->_size--;
 	 shrink();
-	 return removed; // decided not to resize on removing
+	 return removed;
  }
  template<typename T>
  T ArrayList<T>::popFront()
@@ -100,29 +104,34 @@ template <typename T>
 		 return removed;
 	 }
  }
- template<typename T>
+ template <typename T>
  void ArrayList<T>::print()
  {
-	 for (size_t i = _start; i <= last(); i++)
-		 std::cout << content[i] << " ";
+	 if (this->_size == 0) return;
+	 for (size_t i = 0; i < this->_size; i++)
+		 std::cout << content[_start + i] << " ";
 	 std::cout << std::endl;
  }
  template <typename T>
- void  ArrayList<T>::resize(){
-	_capacity *= 2;			     
-	 size_t newStart = _capacity/4; // n/2 free before content, n/2 after content
+ void ArrayList<T>::resize() {
+	 print();
+	 size_t oldCapacity = _capacity;
+	 _capacity *= 2;
+	 size_t newStart = _capacity/4;
 	 T* newContent = new T[_capacity];
-		 for (size_t i = 0; i < this->_size; i++)
-			 newContent[newStart + i] = content[_start + i];
-		 delete[] content;
-		 content = newContent;
-		 _start = newStart;
+	 for (size_t i = 0; i < this->_size; i++) {
+		 newContent[newStart + i] = content[_start + i];
+	 }
+	 delete[] content;
+	 content = newContent;
+	 _start = newStart;
+	 print();
  }
  template <typename T>
  void ArrayList<T>::shrink() {
 	 if (this->_size < _capacity / 4 && _capacity > 4) { // zmniejsz tylko jeœli du¿o wolnego miejsca
 		 size_t newCapacity = _capacity / 2;
-		 size_t newStart = newCapacity / 4;
+		 size_t newStart = _capacity / 4;
 		 T* newContent = new T[newCapacity];
 
 		 for (size_t i = 0; i < this->_size; ++i) {
@@ -138,11 +147,11 @@ template <typename T>
 
  template <typename T>
  void ArrayList<T>::clear() {
-	 size_t startSize = 4;
 	 delete[] content;
-	 _capacity =startSize;
-	 _start = _capacity / 3;
-	 content = new T[_capacity];
+	 size_t startSize = 4;
+	 _capacity = 4;
+	 _start = 1;
+	 content = new T[4];
 	 this->_size = 0;
 	 
  }
