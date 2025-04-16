@@ -130,14 +130,20 @@ template <typename T>
  }
  template <typename T>
  void ArrayList<T>::shrink() {
-	 if (this->_size < _capacity / 4 && _capacity > 4) { // zmniejsz tylko jeœli du¿o wolnego miejsca
+	 if (_capacity > 4 && this->_size < _capacity / 4) {
 		 size_t newCapacity = _capacity / 2;
-		 size_t newStart = _capacity / 4;
+		 size_t newStart = newCapacity / 4;
+
 		 T* newContent = new T[newCapacity];
 
+		 // Skopiuj dane do nowej tablicy
 		 for (size_t i = 0; i < this->_size; ++i) {
 			 newContent[newStart + i] = content[_start + i];
 		 }
+
+		 // Debug print (mo¿esz w³¹czyæ ¿eby œledziæ realokacje)
+		 std::cout << "[shrink] Capacity reduced from " << _capacity
+			 << " to " << newCapacity << "\n";
 
 		 delete[] content;
 		 content = newContent;
@@ -146,15 +152,10 @@ template <typename T>
 	 }
  }
 
+ // no need for more, we simply overwrite contents! :D
  template <typename T>
  void ArrayList<T>::clear() {
-	 delete[] content;
-	 size_t startSize = 4;
-	 _capacity = 4;
-	 _start = 1;
-	 content = new T[4];
 	 this->_size = 0;
-	 
  }
 
  template class ArrayList<int>;
